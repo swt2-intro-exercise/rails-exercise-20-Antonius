@@ -13,4 +13,14 @@ describe "New author page", type: :feature do
     expect(page).to have_field('author[last_name]')
     expect(page).to have_field('author[homepage]')
   end
+
+  it "should provide a submission process" do
+    visit new_author_path
+
+    page.fill_in 'author[last_name]', with: 'Hopper'
+    page.fill_in 'author[first_name]', with: 'Grace'     
+    page.fill_in 'author[homepage]', with: 'https://gi.de/persoenlichkeiten/grace-hopper'
+
+    find('input[type="submit"]').click
+  end
 end
