@@ -23,4 +23,15 @@ describe "New author page", type: :feature do
 
     find('input[type="submit"]').click
   end
+
+  it "should display an error if no last name is provided by the user" do
+    visit new_author_path
+
+    page.fill_in 'author[first_name]', with: 'H4ck3rm4n'
+    page.fill_in 'author[homepage]', with: 'http://www.kungfury.com/'
+
+    find('input[type="submit"]').click
+
+    expect(page).to have_text("error")
+  end
 end
